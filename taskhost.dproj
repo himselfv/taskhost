@@ -5,7 +5,7 @@
         <FrameworkType>None</FrameworkType>
         <MainSource>taskhost.dpr</MainSource>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Debug</Config>
+        <Config Condition="'$(Config)'==''">Release</Config>
         <Platform Condition="'$(Platform)'==''">Win64</Platform>
         <TargetedPlatforms>3</TargetedPlatforms>
         <AppType>Console</AppType>
@@ -50,6 +50,12 @@
         <CfgParent>Base</CfgParent>
         <Base>true</Base>
     </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win64' and '$(Cfg_2)'=='true') or '$(Cfg_2_Win64)'!=''">
+        <Cfg_2_Win64>true</Cfg_2_Win64>
+        <CfgParent>Cfg_2</CfgParent>
+        <Cfg_2>true</Cfg_2>
+        <Base>true</Base>
+    </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
@@ -68,12 +74,12 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <DCC_UsePackage>JvBDE;JvGlobus;JvWizards;JvMM;JvManagedThreads;JvHMI;bindcompfmx;JvBands;vcldbx;fmx;rtl;dbrtl;IndySystem;JvDlgs;JvCrypt;bindcomp;inetdb;StubPanelPkgD17;JvPluginSystem;vclib;inetdbbde;DBXInterBaseDriver;JclContainers;DataSnapCommon;JvCmp;JvNet;JvSystem;xmlrtl;svnui;ibxpress;DbxCommonDriver;JvControls;vclimg;JvDotNetCtrls;IndyProtocols;dbxcds;JvTimeFramework;JaletControls;MetropolisUILiveTile;JvXPCtrls;vclactnband;bindengine;vcldb;soaprtl;bindcompdbx;vcldsnap;bindcompvcl;JvStdCtrls;JvCustom;Jcl;vclie;JvJans;JvPageComps;JvPrintPreview;vcltouch;websnap;CustomIPTransport;JvCore;vclribbon;VclSmp;dsnap;IndyIPServer;fmxase;vcl;IndyCore;IndyIPCommon;dsnapcon;inet;fmxobj;JclVcl;JvAppFrm;JvDB;JvPascalInterpreter;vclx;JvRuntimeDesign;inetdbxpress;webdsnap;svn;fmxdae;JclDeveloperTools;bdertl;VirtualTreesR;JvDocking;dbexpress;adortl;IndyIPClient;$(DCC_UsePackage)</DCC_UsePackage>
-        <Debugger_RunParams>// _cygwin.cmd offlineimap</Debugger_RunParams>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
+        <DCC_DcuOutput>.\Dcu64</DCC_DcuOutput>
+        <DCC_ExeOutput>.\Release64</DCC_ExeOutput>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <DCC_UsePackage>bindcompfmx;fmx;rtl;dbrtl;IndySystem;bindcomp;inetdb;DBXInterBaseDriver;DataSnapCommon;xmlrtl;DbxCommonDriver;vclimg;IndyProtocols;dbxcds;vclactnband;bindengine;vcldb;soaprtl;bindcompdbx;vcldsnap;bindcompvcl;vclie;vcltouch;websnap;CustomIPTransport;VclSmp;dsnap;IndyIPServer;fmxase;vcl;IndyCore;IndyIPCommon;dsnapcon;inet;fmxobj;vclx;inetdbxpress;webdsnap;fmxdae;dbexpress;adortl;IndyIPClient;$(DCC_UsePackage)</DCC_UsePackage>
@@ -87,14 +93,10 @@
         <DCC_RemoteDebug>true</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-        <Debugger_RunParams>// &quot;C:\Program Files\SpiderOak\SpiderOak.exe&quot; --batchmode -v</Debugger_RunParams>
-        <Manifest_File>None</Manifest_File>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
-        <DCC_ExeOutput>.\Release64</DCC_ExeOutput>
-        <DCC_DcuOutput>.\Dcu64</DCC_DcuOutput>
         <VerInfo_Locale>1033</VerInfo_Locale>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
@@ -102,6 +104,9 @@
         <DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
         <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
         <DCC_DebugInformation>false</DCC_DebugInformation>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
+        <VerInfo_Locale>1033</VerInfo_Locale>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
